@@ -1,4 +1,4 @@
-# Estimación de calidad de vino tinto
+# Estimación de calidad de vino tinto - Jorge Zainea_Daniel Gamba
 
 Proyecto académico de Machine Learning con la ruta **supervisada**. Entrena un clasificador binario con un pipeline reproducible, muestra una predicción en Streamlit y permite ejecutar la aplicación con Docker.
 
@@ -95,36 +95,24 @@ La aplicación local probada para este proyecto queda disponible en `http://loca
 
 El `Dockerfile` instala dependencias, copia el modelo ya entrenado y ejecuta Streamlit escuchando en `0.0.0.0:8501`. En un equipo nuevo ejecuta primero `python train.py`, o conserva el `model.joblib` incluido.
 
-## Despliegue en Google Cloud Compute Engine
+## Despliegue alternativo en Streamlit Community Cloud
 
-1. En Google Cloud Console crea o selecciona un proyecto con facturación habilitada; revisa el costo de la VM antes de crearla.
-2. Habilita Compute Engine y crea una VM Linux pequeña con IP externa. Asigna la etiqueta de red `streamlit-server`.
-3. Conéctate por SSH desde la consola e instala Docker y Git:
+Usa esta opción solo si el profesor acepta una plataforma distinta de una VM de Google Cloud. Streamlit Community Cloud publica la app en una URL web, pero no crea una VM de GCP ni proporciona la IP pública de una VM.
 
-   ```bash
-   sudo apt update
-   sudo apt install -y docker.io git
-   sudo systemctl enable --now docker
-   ```
+El repositorio de GitHub debe incluir `app.py`, `model.joblib` y `requirements.txt` en la raíz. Conserva también `data/winequality-red.csv` y el resto de los archivos del proyecto para mantenerlo reproducible. No es necesario volver a entrenar el modelo ni construir la imagen Docker para este despliegue.
 
-4. Clona el repositorio y entra a su carpeta:
+1. Sube el proyecto a GitHub y confirma que Streamlit Community Cloud tenga acceso al repositorio.
+2. Entra a [Streamlit Community Cloud](https://share.streamlit.io/) e inicia sesión con GitHub.
+3. Selecciona **Create app** y elige el repositorio, la rama `main` y el archivo `app.py`.
+4. Pulsa **Deploy**. Streamlit instala las dependencias de `requirements.txt` y publica la app.
+5. Abre la URL generada y pulsa **Estimar calidad** para comprobar una predicción.
 
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd ml_streamlit_project
-   ```
+**Repositorio:** `<[URL_DEL_REPOSITORIO](https://github.com/jozmcuarto-wq/Streamlit)>`  
+**Aplicación publicada:** `<https://app-2ezgqvael9neqtfndvtgsq.streamlit.app/>`
 
-5. Construye y ejecuta la imagen:
+La app se ejecuta en Streamlit Community Cloud, por lo que no es necesario mantener encendido el portátil. Si no recibe visitas durante 12 horas puede dormirse; cualquier visitante puede abrir el enlace para despertarla. Consulta la [documentación de administración y límites](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app).
 
-   ```bash
-   docker build -t ml-streamlit-vino .
-   docker run -d --name ml-streamlit-vino --restart unless-stopped -p 8501:8501 ml-streamlit-vino
-   docker ps
-   docker logs ml-streamlit-vino
-   ```
-
-6. En VPC Network > Firewall crea una regla de entrada TCP 8501 que apunte a la etiqueta `streamlit-server`. Para una demostración temporal se puede permitir origen `0.0.0.0/0`; luego restringe el acceso y elimina o detén los recursos para controlar costos.
-7. Abre `http://<IP_EXTERNA_DE_LA_VM>:8501` y prueba una predicción.
+Antes de entregar, comparte el enlace de la app con otra pareja y registra la prueba en `EVIDENCIA_PRUEBA_CRUZADA.md`.
 
 ## Reproducibilidad y autores
 
