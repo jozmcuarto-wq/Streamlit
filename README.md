@@ -107,8 +107,8 @@ El repositorio de GitHub debe incluir `app.py`, `model.joblib` y `requirements.t
 4. Pulsa **Deploy**. Streamlit instala las dependencias de `requirements.txt` y publica la app.
 5. Abre la URL generada y pulsa **Estimar calidad** para comprobar una predicción.
 
-**Repositorio:** `<[URL_DEL_REPOSITORIO](https://github.com/jozmcuarto-wq/Streamlit)>`  
-**Aplicación publicada:** `<https://app-2ezgqvael9neqtfndvtgsq.streamlit.app/>`
+**Repositorio:** <https://github.com/jozmcuarto-wq/Streamlit>
+**Aplicación publicada:** <https://app-2ezgqvael9neqtfndvtgsq.streamlit.app/>
 
 La app se ejecuta en Streamlit Community Cloud, por lo que no es necesario mantener encendido el portátil. Si no recibe visitas durante 12 horas puede dormirse; cualquier visitante puede abrir el enlace para despertarla. Consulta la [documentación de administración y límites](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app).
 
