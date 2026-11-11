@@ -114,11 +114,19 @@ La app se ejecuta en Streamlit Community Cloud, por lo que no es necesario mante
 
 Antes de entregar, comparte el enlace de la app con otra pareja y registra la prueba en `EVIDENCIA_PRUEBA_CRUZADA.md`.
 
-## Reproducibilidad y autores
+## Evidencia de prueba cruzada
 
-La semilla, la división de datos y las dependencias están fijadas. Para regenerar el artefacto ejecuta `python train.py`; para servirlo, ejecuta Streamlit o Docker. Antes de entregar, una pareja diferente debe reproducir los pasos usando solo este README y registrar el resultado en `EVIDENCIA_PRUEBA_CRUZADA.md`.
-
-**Autores:** completar con los nombres de la pareja.
+- Pareja que reproduce: David Castro y Miguel Melo
+- Fecha: 10 de noviembre de 2026
+- URL del repositorio: https://github.com/jozmcuarto-wq/Streamlit
+- ¿Pudo clonar?: Sí, en GitHub Codespaces.
+- ¿Pudo construir la imagen?: Sí, con docker build -t ml-streamlit-vino .
+- ¿Pudo iniciar el contenedor?: Sí, con docker run --rm -p 8501:8501 ml-streamlit-vino. La app abrió en el puerto 8501.
+- Caso probado y resultado: primera fila del dataset del README. La app predijo "Calidad habitual" con 3,7 % de probabilidad de alta calidad, igual a lo indicado en el README (0,0369).
+- Errores o instrucciones faltantes:
+  1. Falta la carpeta data/winequality-red.csv, aunque el README dice que está incluida. Sin ella no se puede ejecutar python train.py ni el comando de ejemplo.
+  2. La sección de autores no tiene los nombres.
+  3. El README muestra una carpeta ml_streamlit_project/, pero los archivos están en la raíz del repositorio.
 
 ## Preguntas para la discusión final
 
